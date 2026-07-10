@@ -1,0 +1,599 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+<meta charset="UTF-8">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>School Tax Calculator<br><small style='font-size:14px'>Developed by <a href="https://www.youtube.com/@SajidEducationalhelper" target="_blank" style="color:white;text-decoration:none;"><span style="color:#ff0000;font-size:18px;">▶</span> <b>Sajid AEO</b></a> (The Educational Helper)</small></title>
+
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+
+<script src="https://cdn.sheetjs.com/xlsx-0.20.2/package/dist/xlsx.full.min.js"></script>
+
+<style>
+
+body{
+    background:#f5f7fa;
+    font-family:Arial,Helvetica,sans-serif;
+}
+
+.container{
+    max-width:1200px;
+    margin:30px auto;
+}
+
+.card{
+    border:none;
+    border-radius:10px;
+    box-shadow:0 2px 10px rgba(0,0,0,.08);
+    margin-bottom:20px;
+}
+
+.card-header{
+    background:#0d6efd;
+    color:white;
+    font-size:20px;
+    font-weight:bold;
+    padding:18px 15px;
+    border-radius:10px 10px 0 0;
+}
+
+.table th{
+    background:#0d6efd;
+    color:white;
+    text-align:center;
+    vertical-align:middle;
+}
+
+.table td{
+    text-align:center;
+    vertical-align:middle;
+}
+
+.summary-table td{
+    font-weight:bold;
+}
+
+.btn{
+    margin-right:10px;
+    margin-bottom:10px;
+}
+
+h2{
+    text-align:center;
+    margin-bottom:25px;
+    font-weight:bold;
+}
+
+
+ .video-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:14px}
+.video-card{border:1px solid #e5e7eb;border-radius:12px;padding:16px;height:100%;display:flex;flex-direction:column;justify-content:space-between;background:#fff;box-shadow:0 2px 6px rgba(0,0,0,.05)}
+.video-card b{font-size:15px}
+.video-card .btn{margin:12px 0 0;width:100%}
+
+.header-pro{background:linear-gradient(135deg,#0d6efd,#0a58ca);color:#fff;padding:24px;border-radius:12px;text-align:center}
+.header-pro h1{margin:0;font-size:2rem;font-weight:700}
+.header-pro p{margin:8px 0 0;font-size:1rem}
+.header-pro a{color:#fff;text-decoration:none;font-weight:600}
+
+
+.header-pro{
+background:linear-gradient(135deg,#0b5ed7,#198754);
+padding:28px 20px;
+border-radius:18px;
+box-shadow:0 10px 25px rgba(0,0,0,.12);
+margin-bottom:22px;
+}
+.header-pro h1{font-size:2.2rem;letter-spacing:.3px}
+.yt-btn{display:inline-block;margin-top:10px;background:#ff0000;color:#fff!important;
+padding:10px 18px;border-radius:999px;text-decoration:none;font-weight:700}
+.dev-badge{display:inline-block;background:rgba(255,255,255,.15);padding:6px 12px;border-radius:999px;margin-top:10px}
+
+
+.upload-box{background:#fff;border:2px dashed #0d6efd;border-radius:16px;padding:18px;margin-top:18px}
+.action-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:12px;margin-top:16px}
+.action-grid .btn{width:100%;margin:0;padding:12px;font-weight:600;border-radius:10px}
+.form-control{border-radius:10px;padding:10px}
+
+.summary-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:14px}
+.stat-card{background:#fff;border-radius:14px;padding:16px;text-align:center;box-shadow:0 3px 10px rgba(0,0,0,.08);border-top:4px solid #0d6efd}
+.stat-title{font-size:.9rem;color:#666}
+.stat-value{font-size:1.4rem;font-weight:700;margin-top:8px}
+
+.video-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:18px}
+.video-card{position:relative;background:linear-gradient(180deg,#fff,#f8fbff);border:1px solid #dbe7ff;border-radius:16px;padding:18px;transition:.25s;box-shadow:0 4px 12px rgba(0,0,0,.08)}
+.video-card:hover{transform:translateY(-4px);box-shadow:0 10px 24px rgba(0,0,0,.14)}
+.video-title{font-weight:700;font-size:16px;margin-bottom:12px}
+.badge-top{position:absolute;top:12px;right:12px;background:#198754;color:#fff;border-radius:999px;padding:3px 8px;font-size:11px}
+.watch-btn{display:block;width:100%;padding:10px;border-radius:10px;text-align:center;background:#dc3545;color:#fff!important;text-decoration:none;font-weight:700}
+
+
+.disclaimer-box{background:#fff8e1;border-left:6px solid #f0ad00;border-radius:12px;padding:18px}
+.disclaimer-title{font-weight:700;color:#8a6d00;margin-bottom:8px}
+
+.table-wrap{overflow-x:auto;border-radius:12px}
+#taxTable thead th{position:sticky;top:0;background:#0d6efd;color:#fff;z-index:2}
+#taxTable tbody tr:nth-child(even){background:#f8fbff}
+#taxTable tbody tr:hover{background:#eef5ff}
+#taxTable td,#taxTable th{padding:12px;white-space:nowrap}
+
+@media (max-width:768px){
+.container{margin:12px auto;padding:0 10px}
+.header-pro h1{font-size:1.5rem}
+.card-header{font-size:18px;padding:14px}
+.action-grid{grid-template-columns:1fr 1fr}
+.summary-grid,.video-grid{grid-template-columns:1fr}
+.watch-btn,.action-grid .btn{font-size:14px}
+#reportTitle{font-size:18px}
+}
+
+.version-badge{display:inline-block;background:#198754;color:#fff;padding:4px 10px;border-radius:999px;font-size:12px;margin-top:8px}
+footer{background:linear-gradient(135deg,#0d6efd,#0b5ed7)!important;border-top-left-radius:18px;border-top-right-radius:18px;box-shadow:0 -4px 15px rgba(0,0,0,.08)}
+
+.header-pro{
+background:linear-gradient(135deg,#0d6efd,#198754)!important;
+padding:30px 20px!important;
+border-radius:20px!important;
+text-align:center;
+}
+.version-pill{display:inline-block;background:#fff;color:#0d6efd;padding:5px 12px;border-radius:999px;font-weight:700;margin:8px 0}
+.tagline{color:#eef7ff;font-size:15px;margin:6px 0 10px}
+.yt-btn{background:#ff0033!important}
+</style>
+
+</head>
+
+<body>
+
+<div class="container">
+
+<div class="card">
+
+<div class="card-body">
+<div class="header-pro">
+
+<h1 style="margin:0;color:#fff">Free NSB Tax Calculator</h1>
+<div class="version-pill">Version 2.0</div>
+<div class="version-pill" style="margin-top:10px;background:rgba(255,255,255,.15);color:#fff">Tax Year 2025 (2025–26)</div><div class="tagline">For Punjab Government Schools (NSB)</div>
+<div style="color:#fff;margin-bottom:12px">Developed by <b>M. Sajid (AEO)</b></div>
+<a class="yt-btn" href="https://www.youtube.com/@SajidEducationalhelper" target="_blank">▶ Sajid The Educational Helper</a>
+</div><div class="upload-box">
+<div class="row g-3">
+<div class="col-md-6">
+<label class="form-label"><b>🏫 School Name</b></label>
+<input type="text" class="form-control" id="schoolName" placeholder="Enter School Name">
+</div>
+<div class="col-md-6">
+<label class="form-label"><b>📄 Excel File Upload</b></label>
+<input type="file" class="form-control" id="excelFile" accept=".xlsx,.xls">
+</div>
+</div>
+<div class="action-grid">
+<button class="btn btn-success" onclick="downloadSample()">📥 Download Sample</button>
+<button class="btn btn-primary" onclick="readExcel()">🧮 Calculate</button>
+<button class="btn btn-warning" onclick="exportExcel()">📊 Export Excel</button>
+<button class="btn btn-danger" onclick="window.print()">🖨 Export PDF</button>
+</div>
+</div>
+
+</div>
+
+</div>
+
+<h4 id="reportTitle"></h4>
+
+<div class="card">
+
+<div class="card-header">
+
+Overall Summary
+
+</div>
+
+<div class="card-body">
+<div class="summary-grid">
+<div class="stat-card"><div class="stat-title">📄 Total Records</div><div class="stat-value" id="totalRecords">0</div></div>
+<div class="stat-card"><div class="stat-title">💰 Gross Amount</div><div class="stat-value" id="grossAmount">0</div></div>
+<div class="stat-card"><div class="stat-title">🟢 Income Tax</div><div class="stat-value" id="incomeTotal">0</div></div>
+<div class="stat-card"><div class="stat-title">🔵 Sales Tax</div><div class="stat-value" id="salesTotal">0</div></div>
+<div class="stat-card"><div class="stat-title">🟣 Service Tax</div><div class="stat-value" id="serviceTotal">0</div></div>
+<div class="stat-card"><div class="stat-title">🔴 Total Tax</div><div class="stat-value" id="taxTotal">0</div></div>
+</div>
+</div></div>
+
+</div>
+
+<div class="card">
+<div class="card-header">Video Tutorials</div><div class="card-body"><div class="video-grid">
+<div class="video-card"><span class="badge-top">Recommended</span><div class="video-title">📄 Generate NSB Income Tax Challan</div><a class="watch-btn" target="_blank" href="https://youtu.be/PwlzUkGnygw">▶ Watch Tutorial</a></div>
+<div class="video-card"><div class="video-title">🧾 Generate NSB Sales Tax Challan</div><a class="watch-btn" target="_blank" href="https://youtu.be/7UbUJTWNI5k">▶ Watch Tutorial</a></div>
+<div class="video-card"><div class="video-title">💳 Pay via JazzCash</div><a class="watch-btn" target="_blank" href="https://youtu.be/YcrCJfqWv0I">▶ Watch Tutorial</a></div>
+<div class="video-card"><div class="video-title">📱 Pay via Easypaisa</div><a class="watch-btn" target="_blank" href="https://youtu.be/rWS7mWf0OuE">▶ Watch Tutorial</a></div>
+</div></div>
+<div class="card"><div class="card-header">Disclaimer</div><div class="card-body"><div class="disclaimer-box"><div class="disclaimer-title">ℹ️ Important Notice</div><div>This calculator is designed for <b>Non-Filer vendors</b>. Tax rates may differ for Active Taxpayers/Filers. Please verify the latest FBR withholding tax rates before processing payments.</div></div></div></div>
+
+<div class="card">
+
+<div class="card-header">
+
+Tax Details Table
+
+</div>
+
+<div class="card-body">
+
+<div class="table-wrap"><table class="table table-bordered table-hover align-middle" id="taxTable">
+
+<thead>
+
+<tr>
+
+<th>Sr</th>
+
+<th>Item</th>
+
+<th>Amount</th>
+
+<th>Tax Category</th>
+
+<th>Income Tax (10%)</th>
+
+<th>Sales Tax (20%)</th>
+<th>Service Tax (20%)</th>
+<th>Total Tax</th>
+
+</tr>
+
+</thead>
+
+<tbody>
+
+</tbody>
+
+</table></div>
+
+</div>
+
+</div>
+
+
+
+<script>
+
+const taxRules = {
+
+"caregiver salary":"Non Taxable item",
+"teacher salary":"Non Taxable item",
+"sweeper salary":"Non Taxable item",
+"taps, washbasin, water pipe":"Non Taxable item",
+"electricity bills":"Non Taxable item",
+"telephone bill":"Non Taxable item",
+"mobile load":"Non Taxable item",
+"plants":"Non Taxable item",
+"locks":"Non Taxable item",
+"cleanliness by hand":"Non Taxable item",
+"labour work":"Non Taxable item",
+"by hand repair work":"Non Taxable item",
+"electricity appliances (fans,lights,motor,speaker etc)":"Non Taxable item",
+"electricity repairing":"Non Taxable item",
+"new motor/pump":"Non Taxable item",
+"motor/pump repair":"Non Taxable item",
+"plumber work":"Non Taxable item",
+"sand, soil, crush":"Non Taxable item",
+"flex, banners":"Non Taxable item",
+"medicine":"Non Taxable item",
+"photocopies":"Non Taxable item",
+"water bore by hand":"Non Taxable item",
+"slabs for roof":"Non Taxable item",
+"crockery/utensils":"Non Taxable item",
+
+"stationary":"Income Tax and Sales Tax",
+"bricks":"Income Tax and Sales Tax",
+"iron gate/windows":"Income Tax and Sales Tax",
+"new furniture":"Income Tax and Sales Tax",
+
+"water bore by machinaery":"Income Tax",
+"fare/transportation charges":"Income Tax",
+
+"cleanliness by machinary":"Service tax 20%",
+"welding repair work":"Service tax 20%",
+"furniture repair":"Service tax 20%",
+
+"contract for roof construction":"On contract 10% Income Tax",
+"paint work contract":"On contract 10% Income Tax"
+
+};
+
+function normalize(item){
+return String(item).toLowerCase()
+.replace(/stationery/g,'stationary')
+.replace(/painting work/g,'paint work contract')
+.replace(/paint contract/g,'paint work contract')
+.replace(/furniture repair work/g,'furniture repair')
+.replace(/water bore by machinery/g,'water bore by machinaery')
+.replace(/cleanliness by machinery/g,'cleanliness by machinary')
+.trim();
+}
+
+function calculateTax(item,amount){
+
+let category='Item Not Found';
+
+let incomeTax=0;
+
+let serviceTax=0;
+let salesTax=0;
+
+const key=normalize(item);
+
+if(taxRules[key]){category=taxRules[key];}
+
+switch(category){
+
+case "Income Tax":
+incomeTax=amount*0.10;
+break;
+
+case "Income Tax and Sales Tax":
+incomeTax=amount*0.10;
+salesTax=amount*0.20;
+break;
+
+case "Service tax 20%":
+serviceTax=amount*0.20;
+break;
+
+case "On contract 10% Income Tax":
+incomeTax=amount*0.10;
+break;
+
+}
+
+return{
+
+category,
+
+incomeTax,
+
+serviceTax,
+salesTax,
+
+totalTax:incomeTax+serviceTax+salesTax
+
+};
+
+}
+
+function readExcel(){
+if(!document.getElementById('schoolName').value.trim()){alert('Please enter School Name.');return;}
+
+
+const file=document.getElementById("excelFile").files[0];
+
+if(!file){
+
+alert("Please select Excel file.");
+
+return;
+
+}
+
+const reader=new FileReader();
+
+reader.onload=function(e){
+
+const data=new Uint8Array(e.target.result);
+
+const workbook=XLSX.read(data,{type:"array"});
+
+const sheet=workbook.Sheets[workbook.SheetNames[0]];
+
+const rows=XLSX.utils.sheet_to_json(sheet);
+
+showData(rows);
+
+};
+
+reader.readAsArrayBuffer(file);
+
+}
+
+function showData(rows){
+
+const school=document.getElementById("schoolName").value.trim();
+
+document.getElementById("reportTitle").innerHTML=
+"<b>School Name :</b> "+school;
+
+let tbody=document.querySelector("#taxTable tbody");
+
+tbody.innerHTML="";
+
+let gross=0;
+let income=0;
+let service=0;
+let sales=0;
+let totalTax=0;
+
+rows.forEach((row,index)=>{
+
+const item=row.Item || "";
+
+if(row.Amount===undefined||row.Amount===''){return;}
+const amount=parseFloat(row.Amount);
+if(isNaN(amount)||amount<0){return;}
+
+const tax=calculateTax(item,amount);
+
+gross+=amount;
+
+income+=tax.incomeTax;
+
+service+=tax.serviceTax;
+sales+=tax.salesTax;
+
+totalTax+=tax.totalTax;
+
+tbody.innerHTML+=`
+
+<tr>
+
+<td>${index+1}</td>
+
+<td>${item}</td>
+
+<td>${'Rs. '+amount.toLocaleString('en-PK',{
+minimumFractionDigits:2,
+maximumFractionDigits:2
+})}</td>
+
+<td>${tax.category}</td>
+
+<td>${'Rs. '+tax.incomeTax.toLocaleString('en-PK',{
+minimumFractionDigits:2,
+maximumFractionDigits:2
+})}</td>
+
+<td>${'Rs. '+tax.salesTax.toLocaleString('en-PK',{minimumFractionDigits:2,maximumFractionDigits:2})}</td>
+
+<td>${'Rs. '+tax.serviceTax.toLocaleString('en-PK',{minimumFractionDigits:2,maximumFractionDigits:2})}</td>
+<td>${'Rs. '+tax.totalTax.toLocaleString('en-PK',{
+minimumFractionDigits:2,
+maximumFractionDigits:2
+})}</td>
+
+</tr>
+
+`;
+
+});
+
+document.getElementById("totalRecords").innerHTML=rows.length;
+
+document.getElementById("grossAmount").innerHTML=
+gross.toLocaleString('en-PK',{
+minimumFractionDigits:2,
+maximumFractionDigits:2
+});
+
+document.getElementById("incomeTotal").innerHTML=
+income.toLocaleString('en-PK',{
+minimumFractionDigits:2,
+maximumFractionDigits:2
+});
+
+document.getElementById("serviceTotal").innerHTML=
+service.toLocaleString('en-PK',{
+minimumFractionDigits:2,
+maximumFractionDigits:2
+});
+
+document.getElementById('salesTotal').innerHTML=sales.toLocaleString('en-PK',{minimumFractionDigits:2,maximumFractionDigits:2});
+
+document.getElementById("taxTotal").innerHTML=
+totalTax.toLocaleString('en-PK',{
+minimumFractionDigits:2,
+maximumFractionDigits:2
+});
+
+}
+
+function downloadSample(){
+const data=[['Item','Amount'],
+['Caregiver Salary',''],
+['Teacher Salary',''],
+['Sweeper Salary',''],
+['Taps, Washbasin, Water Pipe',''],
+['Electricity Bills',''],
+['Telephone Bill',''],
+['Mobile Load',''],
+['Plants',''],
+['Locks',''],
+['Cleanliness by Hand',''],
+['Labour Work',''],
+['By Hand Repair Work',''],
+['Electricity Appliances (Fans,Lights,Motor,Speaker etc)',''],
+['Electricity Repairing',''],
+['New Motor/Pump',''],
+['Motor/Pump Repair',''],
+['Plumber Work',''],
+['Sand, Soil, Crush',''],
+['Flex, Banners',''],
+['Medicine',''],
+['Photocopies',''],
+['Water Bore by Hand',''],
+['Slabs for Roof',''],
+['Crockery/Utensils',''],
+['Stationary',''],
+['Bricks',''],
+['Iron Gate/Windows',''],
+['New Furniture',''],
+['Water Bore by Machinery',''],
+['Fare/Transportation Charges',''],
+['Cleanliness by Machinery',''],
+['Welding Repair Work',''],
+['Furniture Repair',''],
+['Contract for Roof Construction',''],
+['Paint Work Contract',''],
+];
+const ws=XLSX.utils.aoa_to_sheet(data);
+const wb=XLSX.utils.book_new();
+XLSX.utils.book_append_sheet(wb,ws,'Sample');
+XLSX.writeFile(wb,'School_Tax_Sample.xlsx');
+}
+
+function exportExcel(){
+
+const wb=XLSX.utils.book_new();
+
+const table=document.getElementById("taxTable");
+
+const ws=XLSX.utils.table_to_sheet(table);
+
+XLSX.utils.book_append_sheet(wb,ws,"Tax Report");
+
+const summary=[
+["School Name",document.getElementById("schoolName").value],
+[],
+["Description","Amount"],
+["Total Records",document.getElementById("totalRecords").innerHTML],
+["Gross Amount",document.getElementById("grossAmount").innerHTML],
+["Income Tax",document.getElementById("incomeTotal").innerHTML],
+["Service Tax",document.getElementById("serviceTotal").innerHTML],
+["Total Tax",document.getElementById("taxTotal").innerHTML]
+];
+
+const ws2=XLSX.utils.aoa_to_sheet(summary);
+
+XLSX.utils.book_append_sheet(wb,ws2,"Summary");
+
+XLSX.writeFile(wb,"SchoolTaxReport.xlsx");
+
+}
+
+window.onload=function(){
+
+document.getElementById("schoolName").focus();
+
+};
+
+</script>
+
+
+
+</div>
+</div>
+
+
+<footer style="text-align:center;background:#0d6efd;color:#fff;padding:20px;margin-top:20px;">
+<h5 style='margin:0;'>Free NSB Tax Calculator</h5><div class='version-badge'>Version 1.0</div>
+<div>Developed by <b>M. Sajid (AEO)</b></div>
+<div>📺 Sajid The Educational Helper</div>
+<div style="margin-top:8px;">© 2026 All Rights Reserved</div>
+</footer>
+</body>
+
+</html>
