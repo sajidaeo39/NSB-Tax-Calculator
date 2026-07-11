@@ -1,18 +1,12 @@
 <!DOCTYPE html>
+
 <html lang="en">
-
 <head>
-
-<meta charset="UTF-8">
-
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-<title>School Tax Calculator<br><small style='font-size:14px'>Developed by <a href="https://www.youtube.com/@SajidEducationalhelper" target="_blank" style="color:white;text-decoration:none;"><span style="color:#ff0000;font-size:18px;">▶</span> <b>Sajid AEO</b></a> (The Educational Helper)</small></title>
-
-<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
-
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>School Tax Calculator<br/><small style="font-size:12px">Developed by <a href="https://www.youtube.com/@SajidEducationalhelper" style="color:white;text-decoration:none;" target="_blank"><span style="color:#ff0000;font-size:12px;">▶</span> <b>Sajid AEO</b></a> (The Educational Helper)</small></title>
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"/>
 <script src="https://cdn.sheetjs.com/xlsx-0.20.2/package/dist/xlsx.full.min.js"></script>
-
 <style>
 
 body{
@@ -28,7 +22,7 @@ body{
 .card{
     border:none;
     border-radius:10px;
-    box-shadow:0 2px 10px rgba(0,0,0,.08);
+    box-shadow:0 6px 18px rgba(0,0,0,.08);
     margin-bottom:20px;
 }
 
@@ -58,8 +52,7 @@ body{
 }
 
 .btn{
-    margin-right:10px;
-    margin-bottom:10px;
+    margin:0;
 }
 
 h2{
@@ -71,11 +64,11 @@ h2{
 
  .video-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:14px}
 .video-card{border:1px solid #e5e7eb;border-radius:12px;padding:16px;height:100%;display:flex;flex-direction:column;justify-content:space-between;background:#fff;box-shadow:0 2px 6px rgba(0,0,0,.05)}
-.video-card b{font-size:15px}
+.video-card b{font-size:11px}
 .video-card .btn{margin:12px 0 0;width:100%}
 
-.header-pro{background:linear-gradient(135deg,#0d6efd,#0a58ca);color:#fff;padding:24px;border-radius:12px;text-align:center}
-.header-pro h1{margin:0;font-size:2rem;font-weight:700}
+
+
 .header-pro p{margin:8px 0 0;font-size:1rem}
 .header-pro a{color:#fff;text-decoration:none;font-weight:600}
 
@@ -85,28 +78,30 @@ background:linear-gradient(135deg,#0b5ed7,#198754);
 padding:28px 20px;
 border-radius:18px;
 box-shadow:0 10px 25px rgba(0,0,0,.12);
-margin-bottom:22px;
+margin-bottom:4px;
 }
 .header-pro h1{font-size:2.2rem;letter-spacing:.3px}
-.yt-btn{display:inline-block;margin-top:10px;background:#ff0000;color:#fff!important;
-padding:10px 18px;border-radius:999px;text-decoration:none;font-weight:700}
-.dev-badge{display:inline-block;background:rgba(255,255,255,.15);padding:6px 12px;border-radius:999px;margin-top:10px}
+.yt-btn{display:inline-block;margin-top:4px;background:#ff0000;color:#fff!important;
+height:34px;padding:0 12px;border-radius:999px;display:inline-flex;align-items:center;justify-content:center;text-decoration:none;font-weight:700}
+.dev-badge{display:inline-block;background:rgba(255,255,255,.15);padding:6px 12px;border-radius:999px;margin-top:4px}
 
 
 .upload-box{background:#fff;border:2px dashed #0d6efd;border-radius:16px;padding:18px;margin-top:18px}
 .action-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:12px;margin-top:16px}
-.action-grid .btn{width:100%;margin:0;padding:12px;font-weight:600;border-radius:10px}
+.action-grid .btn{width:100%;margin:0;padding:8px;height:56px;font-weight:700;border-radius:14px;transition:.25s ease}.action-grid .btn:hover{transform:translateY(-3px);box-shadow:0 10px 20px rgba(0,0,0,.18)}.action-grid .btn:disabled{opacity:.8}
 .form-control{border-radius:10px;padding:10px}
 
-.summary-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:14px}
-.stat-card{background:#fff;border-radius:14px;padding:16px;text-align:center;box-shadow:0 3px 10px rgba(0,0,0,.08);border-top:4px solid #0d6efd}
-.stat-title{font-size:.9rem;color:#666}
-.stat-value{font-size:1.4rem;font-weight:700;margin-top:8px}
+.summary-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:16px}
+.stat-card{color:#fff;border-radius:20px;padding:20px;text-align:center;box-shadow:0 10px 24px rgba(0,0,0,.18);position:relative}
+.stat-card .icon{width:52px;height:52px;border-radius:50%;background:rgba(255,255,255,.25);display:flex;align-items:center;justify-content:center;margin:-38px auto 10px;font-size:12px}
+.stat-title{font-size:11px}.stat-value{font-size:30px;font-weight:800}
+.c1{background:linear-gradient(135deg,#2563EB,#1D4ED8)}.c2{background:linear-gradient(135deg,#10B981,#059669)}.c3{background:linear-gradient(135deg,#F59E0B,#D97706)}.c4{background:linear-gradient(135deg,#06B6D4,#0891B2)}.c5{background:linear-gradient(135deg,#8B5CF6,#7C3AED)}.c6{background:linear-gradient(135deg,#DC2626,#B91C1C)}
+@media(min-width:992px){.summary-grid{grid-template-columns:repeat(3,1fr)}}
 
 .video-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:18px}
-.video-card{position:relative;background:linear-gradient(180deg,#fff,#f8fbff);border:1px solid #dbe7ff;border-radius:16px;padding:18px;transition:.25s;box-shadow:0 4px 12px rgba(0,0,0,.08)}
+.video-card{position:relative;background:linear-gradient(180deg,#fff,#f8fbff);border:1px solid #dbe7ff;border-radius:16px;padding:18px;transition:.25s ease;box-shadow:0 4px 12px rgba(0,0,0,.08)}
 .video-card:hover{transform:translateY(-4px);box-shadow:0 10px 24px rgba(0,0,0,.14)}
-.video-title{font-weight:700;font-size:16px;margin-bottom:12px}
+.video-title{font-weight:700;font-size:12px;margin-bottom:12px}
 .badge-top{position:absolute;top:12px;right:12px;background:#198754;color:#fff;border-radius:999px;padding:3px 8px;font-size:11px}
 .watch-btn{display:block;width:100%;padding:10px;border-radius:10px;text-align:center;background:#dc3545;color:#fff!important;text-decoration:none;font-weight:700}
 
@@ -122,146 +117,282 @@ padding:10px 18px;border-radius:999px;text-decoration:none;font-weight:700}
 
 @media (max-width:768px){
 .container{margin:12px auto;padding:0 10px}
-.header-pro h1{font-size:1.5rem}
-.card-header{font-size:18px;padding:14px}
+.header-pro h1{font-size:1.6rem}
+.card-header{font-size:12px;padding:8px}
 .action-grid{grid-template-columns:1fr 1fr}
 .summary-grid,.video-grid{grid-template-columns:1fr}
-.watch-btn,.action-grid .btn{font-size:14px}
-#reportTitle{font-size:18px}
+.watch-btn,.action-grid .btn{font-size:12px}
+#reportTitle{font-size:12px}
 }
 
 .version-badge{display:inline-block;background:#198754;color:#fff;padding:4px 10px;border-radius:999px;font-size:12px;margin-top:8px}
 footer{background:linear-gradient(135deg,#0d6efd,#0b5ed7)!important;border-top-left-radius:18px;border-top-right-radius:18px;box-shadow:0 -4px 15px rgba(0,0,0,.08)}
 
-.header-pro{
-background:linear-gradient(135deg,#0d6efd,#198754)!important;
-padding:30px 20px!important;
-border-radius:20px!important;
+.header-pro{background:linear-gradient(135deg,#0d6efd,#198754)!important;padding:8px 12px!important;
+border-radius:14px!important;
 text-align:center;
 }
 .version-pill{display:inline-block;background:#fff;color:#0d6efd;padding:5px 12px;border-radius:999px;font-weight:700;margin:8px 0}
-.tagline{color:#eef7ff;font-size:15px;margin:6px 0 10px}
+.tagline{color:#eef7ff;font-size:11px;margin:6px 0 10px}
 .yt-btn{background:#ff0033!important}
+
+.video-thumb{position:relative;overflow:hidden;border-radius:14px}
+.video-thumb img{width:100%;display:block;transition:.3s}
+.video-card:hover .video-thumb img{transform:scale(1.05)}
+.duration{position:absolute;right:8px;bottom:8px;background:#000;color:#fff;padding:3px 8px;border-radius:8px;font-size:12px}
+.video-card{padding:0;overflow:hidden;border-radius:18px;box-shadow:0 10px 22px rgba(0,0,0,.12)}
+.video-content{padding:16px}
+@media(min-width:992px){.video-grid{grid-template-columns:repeat(4,1fr)}}
+@media(min-width:768px) and (max-width:991px){.video-grid{grid-template-columns:repeat(2,1fr)}}
+@media(max-width:767px){.video-grid{grid-template-columns:1fr}}
+
+
+.table-search{margin-bottom:12px}
+.tax-badge{padding:4px 10px;border-radius:999px;color:#fff;font-size:12px;font-weight:700}
+#taxTable tbody tr:nth-child(even){background:#f7fbff}
+#taxTable tbody tr:hover{background:#e8f2ff}
+
+
+.loading-overlay{display:none;position:fixed;inset:0;background:rgba(255,255,255,.7);align-items:center;justify-content:center;font-size:12px;font-weight:bold;z-index:9998}
+
+@media print{.theme-toggle,.loading-overlay,#tableSearch,.action-grid,.video-grid{display:none!important}.card{box-shadow:none}}
+
+@media(max-width:768px){.summary-grid{grid-template-columns:repeat(3,1fr)!important;gap:8px}.stat-card{padding:10px;border-radius:12px}.stat-card .icon{width:36px;height:36px;font-size:12px;margin:-22px auto 6px}.stat-title{font-size:11px}.stat-value{font-size:20px}.action-grid .btn{height:44px;font-size:11px;padding:8px}}
+.summary-grid{display:grid!important;grid-template-columns:repeat(3,minmax(0,1fr));gap:10px}
+@media(max-width:768px){.summary-grid{grid-template-columns:repeat(3,1fr)!important}.summary-card{padding:10px!important}.summary-card h3{font-size:12px!important}.summary-card p{font-size:11px!important}}
+
+/* Premium dashboard equal cards */
+.dashboard-card,.card{border-radius:16px!important;overflow:hidden}
+.card{margin:18px auto!important;max-width:1200px}
+.card-header{padding:14px 18px!important;font-size:19px!important}
+.card-body{padding:18px!important}
+.summary-grid,.video-grid{align-items:stretch}
+.video-card{height:100%!important}
+.disclaimer-box{min-height:140px;display:flex;flex-direction:column;justify-content:center}
+.table-wrap{min-height:140px}
+
+
+.sticky-disclaimer{position:sticky;top:0;z-index:1055;border-left:5px solid #ffc107;box-shadow:0 2px 8px rgba(0,0,0,.08)}
+
+
+.card-body{padding:12px!important}.card{margin-bottom:10px!important}.action-grid .btn{height:46px!important}
+</style>
+<style>
+.card{
+ border:none!important;
+ border-radius:10px!important;
+ box-shadow:0 3px 10px rgba(0,0,0,.08)!important;
+ overflow:hidden;
+}
+.card-header{
+ padding:12px 16px!important;
+ font-size:18px!important;
+}
+.summary-grid{
+ display:grid!important;
+ grid-template-columns:repeat(6,minmax(0,1fr))!important;
+ gap:10px!important;
+}
+.stat-card{
+ min-height:60px!important;
+ padding:6px!important;
+ border-radius:10px!important;
+ display:flex!important;
+ flex-direction:column;
+ justify-content:center;
+ align-items:center;
+ box-shadow:none!important;
+}
+.stat-card .icon{
+ width:28px!important;
+ height:28px!important;
+ margin:0 0 4px!important;
+ border-radius:50%;
+ background:rgba(255,255,255,.25);
+ display:flex;align-items:center;justify-content:center;
+ font-size:14px!important;
+}
+.stat-title{font-size:10px!important;line-height:1.2}
+.stat-value{font-size:17px!important;font-weight:700;line-height:1.1}
+@media(max-width:992px){
+.summary-grid{grid-template-columns:repeat(3,1fr)!important;}
+}
+@media(max-width:576px){
+.summary-grid{grid-template-columns:repeat(2,1fr)!important;}
+}
+</style>
+<style id="compacttax">
+.table-wrap{overflow:auto;max-height:72vh}
+#taxTable{table-layout:fixed;width:100%;font-size:11px}
+#taxTable th,#taxTable td{white-space:normal!important;word-break:break-word;padding:4px 6px!important;line-height:1.2}
+#taxTable th:nth-child(1),#taxTable td:nth-child(1){width:40px}
+#taxTable th:nth-child(2),#taxTable td:nth-child(2){width:22%}
+#taxTable th:nth-child(3),#taxTable td:nth-child(3){width:10%}
+#taxTable th:nth-child(4),#taxTable td:nth-child(4){width:18%}
+#taxTable th:nth-child(n+5),#taxTable td:nth-child(n+5){width:10%}
+@media print{
+@page{size:A4 landscape;margin:6mm}
+body{zoom:.88}
+.table-wrap{max-height:none;overflow:visible}
+}
 </style>
 
+<style id="uicompact">
+.container{margin:12px auto!important}
+.card{margin:10px auto!important;border-radius:14px!important}
+.card-body{padding:12px!important}
+.card-header{padding:10px 14px!important;font-size:18px!important}
+.upload-box{padding:12px!important;margin-top:10px!important}
+.action-grid{gap:10px!important;margin-top:10px!important}
+.action-grid .btn{height:46px!important;border-radius:10px!important}
+.video-content{padding:12px!important}
+.video-title{margin-bottom:8px!important}
+.watch-btn{padding:8px!important}
+.table-search{margin-bottom:8px!important}
+.disclaimer-box,.sticky-disclaimer{margin:4px 0!important}
+footer{padding:8px 0!important;margin-top:10px!important}
+</style>
+<style id="v3-usage-stats">
+.usage-stats{display:flex;flex-wrap:wrap;justify-content:center;gap:8px;margin-top:12px}
+.stat-chip{display:inline-flex;align-items:center;gap:5px;background:#eef5ff;color:#0b5ed7;border:1px solid #d7e6ff;border-radius:999px;padding:6px 14px;font-size:12px;font-weight:600;white-space:nowrap}
+.stat-chip b{font-size:13px;color:#0d6efd;font-weight:800}
+.chip-icon{font-size:13px}
+@media(max-width:576px){.stat-chip{padding:5px 10px;font-size:11px}.stat-chip b{font-size:12px}}
+</style>
 </head>
-
-<body>
-
+<body><div class="loading-overlay" id="loading">Processing...</div>
 <div class="container">
-
 <div class="card">
-
 <div class="card-body">
 <div class="header-pro">
+<style>
+.header-pro{position:relative;}
+
+
+.disclaimer-box{padding:8px 12px!important;min-height:auto!important;font-size:13px!important}
+.disclaimer-title{margin-bottom:4px!important;font-size:14px!important}
+</style>
 
 <h1 style="margin:0;color:#fff">Free NSB Tax Calculator</h1>
-<div class="version-pill">Version 2.0</div>
-<div class="version-pill" style="margin-top:10px;background:rgba(255,255,255,.15);color:#fff">Tax Year 2025 (2025–26)</div><div class="tagline">For Punjab Government Schools (NSB)</div>
-<div style="color:#fff;margin-bottom:12px">Developed by <b>M. Sajid (AEO)</b></div>
+<div class="mt-1"><span class="version-pill">Version 3.0</span><span class="version-pill" style="margin-top:4px;background:rgba(255,255,255,.15);color:#fff">Tax Year 2025 (2025–26)</span></div><div class="tagline">For Punjab Government Schools (NSB)</div>
+<div style="color:#fff;margin:2px 0 4px">Developed by <b>M. Sajid (AEO)</b></div>
 <a class="yt-btn" href="https://www.youtube.com/@SajidEducationalhelper" target="_blank">▶ Sajid The Educational Helper</a>
+</div><div class="alert alert-warning alert-dismissible fade show sticky-disclaimer d-flex justify-content-between align-items-center py-2 px-3 mb-1" role="alert">
+<div><span>⚠️</span> <small><b>Disclaimer:</b> This calculator is for <b>Non-Filer vendors</b>. Verify the latest FBR withholding tax rates before processing payments.</small></div>
+<div><button type="button" class="btn-close" data-bs-dismiss="alert"></button></div>
 </div><div class="upload-box">
 <div class="row g-3">
 <div class="col-md-6">
 <label class="form-label"><b>🏫 School Name</b></label>
-<input type="text" class="form-control" id="schoolName" placeholder="Enter School Name">
+<input class="form-control" id="schoolName" placeholder="Enter School Name" type="text"/>
 </div>
 <div class="col-md-6">
 <label class="form-label"><b>📄 Excel File Upload</b></label>
-<input type="file" class="form-control" id="excelFile" accept=".xlsx,.xls">
+<input accept=".xlsx,.xls" class="form-control" id="excelFile" type="file"/>
 </div>
 </div>
 <div class="action-grid">
-<button class="btn btn-success" onclick="downloadSample()">📥 Download Sample</button>
-<button class="btn btn-primary" onclick="readExcel()">🧮 Calculate</button>
-<button class="btn btn-warning" onclick="exportExcel()">📊 Export Excel</button>
-<button class="btn btn-danger" onclick="window.print()">🖨 Export PDF</button>
+<button class="btn btn-success" onclick="downloadSample()">⬇️ Sample File</button>
+<button class="btn btn-primary" id="calcBtn" onclick="readExcel()">⚡ Calculate</button>
+<button class="btn btn-warning" id="exportBtn" onclick="exportExcel()">📗 Export Excel</button>
+<button class="btn btn-danger" onclick="exportPDF()">🖨 Export PDF</button>
 </div>
+<div class="usage-stats">
+<span class="stat-chip"><span class="chip-icon">👁</span>Visitors <b id="visitorCount">0</b></span>
+<span class="stat-chip"><span class="chip-icon">🧮</span>Calculations <b id="calcCount">0</b></span>
+<span class="stat-chip"><span class="chip-icon">⬇</span>Downloads <b id="dlCount">0</b></span>
 </div>
 
 </div>
-
 </div>
-
+</div>
 <h4 id="reportTitle"></h4>
-
 <div class="card">
-
 <div class="card-header">
 
 Overall Summary
 
 </div>
-
 <div class="card-body">
 <div class="summary-grid">
-<div class="stat-card"><div class="stat-title">📄 Total Records</div><div class="stat-value" id="totalRecords">0</div></div>
-<div class="stat-card"><div class="stat-title">💰 Gross Amount</div><div class="stat-value" id="grossAmount">0</div></div>
-<div class="stat-card"><div class="stat-title">🟢 Income Tax</div><div class="stat-value" id="incomeTotal">0</div></div>
-<div class="stat-card"><div class="stat-title">🔵 Sales Tax</div><div class="stat-value" id="salesTotal">0</div></div>
-<div class="stat-card"><div class="stat-title">🟣 Service Tax</div><div class="stat-value" id="serviceTotal">0</div></div>
-<div class="stat-card"><div class="stat-title">🔴 Total Tax</div><div class="stat-value" id="taxTotal">0</div></div>
+<div class="stat-card c1"><div class="stat-title">Total Records</div><div class="stat-value" id="totalRecords">0</div></div>
+<div class="stat-card c2"><div class="stat-title">Gross Amount</div><div class="stat-value" id="grossAmount">0</div></div>
+<div class="stat-card c3"><div class="stat-title">Income Tax</div><div class="stat-value" id="incomeTotal">0</div></div>
+<div class="stat-card c4"><div class="stat-title">Sales Tax</div><div class="stat-value" id="salesTotal">0</div></div>
+<div class="stat-card c5"><div class="stat-title">Service Tax</div><div class="stat-value" id="serviceTotal">0</div></div>
+<div class="stat-card c6"><div class="stat-title">Total Tax</div><div class="stat-value" id="taxTotal">0</div></div>
+</div></div></div>
 </div>
-</div></div>
-
-</div>
-
 <div class="card">
 <div class="card-header">Video Tutorials</div><div class="card-body"><div class="video-grid">
-<div class="video-card"><span class="badge-top">Recommended</span><div class="video-title">📄 Generate NSB Income Tax Challan</div><a class="watch-btn" target="_blank" href="https://youtu.be/PwlzUkGnygw">▶ Watch Tutorial</a></div>
-<div class="video-card"><div class="video-title">🧾 Generate NSB Sales Tax Challan</div><a class="watch-btn" target="_blank" href="https://youtu.be/7UbUJTWNI5k">▶ Watch Tutorial</a></div>
-<div class="video-card"><div class="video-title">💳 Pay via JazzCash</div><a class="watch-btn" target="_blank" href="https://youtu.be/YcrCJfqWv0I">▶ Watch Tutorial</a></div>
-<div class="video-card"><div class="video-title">📱 Pay via Easypaisa</div><a class="watch-btn" target="_blank" href="https://youtu.be/rWS7mWf0OuE">▶ Watch Tutorial</a></div>
+<div class="video-card"><div class="video-thumb"><img src="https://img.youtube.com/vi/PwlzUkGnygw/hqdefault.jpg"/><span class="duration">08:35</span></div><div class="video-content"><div class="video-title">📄 Generate NSB Income Tax Challan</div><a class="watch-btn" href="https://youtu.be/PwlzUkGnygw" target="_blank">▶ Watch Tutorial</a></div></div>
+<div class="video-card"><div class="video-thumb"><img src="https://img.youtube.com/vi/7UbUJTWNI5k/hqdefault.jpg"/><span class="duration">07:20</span></div><div class="video-content"><div class="video-title">🧾 Generate NSB Sales Tax Challan</div><a class="watch-btn" href="https://youtu.be/7UbUJTWNI5k" target="_blank">▶ Watch Tutorial</a></div></div>
+<div class="video-card"><div class="video-thumb"><img src="https://img.youtube.com/vi/YcrCJfqWv0I/hqdefault.jpg"/><span class="duration">05:10</span></div><div class="video-content"><div class="video-title">💳 Pay via JazzCash</div><a class="watch-btn" href="https://youtu.be/YcrCJfqWv0I" target="_blank">▶ Watch Tutorial</a></div></div>
+<div class="video-card"><div class="video-thumb"><img src="https://img.youtube.com/vi/rWS7mWf0OuE/hqdefault.jpg"/><span class="duration">06:45</span></div><div class="video-content"><div class="video-title">📱 Pay via Easypaisa</div><a class="watch-btn" href="https://youtu.be/rWS7mWf0OuE" target="_blank">▶ Watch Tutorial</a></div></div>
 </div></div>
-<div class="card"><div class="card-header">Disclaimer</div><div class="card-body"><div class="disclaimer-box"><div class="disclaimer-title">ℹ️ Important Notice</div><div>This calculator is designed for <b>Non-Filer vendors</b>. Tax rates may differ for Active Taxpayers/Filers. Please verify the latest FBR withholding tax rates before processing payments.</div></div></div></div>
-
 <div class="card">
-
 <div class="card-header">
 
 Tax Details Table
 
 </div>
-
 <div class="card-body">
-
-<div class="table-wrap"><table class="table table-bordered table-hover align-middle" id="taxTable">
-
+<input class="form-control table-search" id="tableSearch" placeholder="🔍 Search item or category"/><div class="table-wrap"><table class="table table-bordered table-hover align-middle" id="taxTable">
 <thead>
-
 <tr>
-
 <th>Sr</th>
-
 <th>Item</th>
-
 <th>Amount</th>
-
 <th>Tax Category</th>
-
 <th>Income Tax (10%)</th>
-
 <th>Sales Tax (20%)</th>
 <th>Service Tax (20%)</th>
 <th>Total Tax</th>
-
 </tr>
-
 </thead>
-
 <tbody>
-
 </tbody>
-
 </table></div>
-
 </div>
-
 </div>
-
-
-
 <script>
+/* ---------- Usage Counters ----------
+   Note: the original CountAPI (api.countapi.xyz) has permanently shut down,
+   so this uses its actively-maintained community successor instead. Same
+   idea (free, no signup, simple hit-counter), just a live endpoint. */
+const COUNTER_BASE='https://countapi.mileshilliard.com/api/v1';
+const COUNTER_KEYS={
+visitors:'sajidaeo-nsb-tax-calculator-visitors',
+calculations:'sajidaeo-nsb-tax-calculator-calculations',
+downloads:'sajidaeo-nsb-tax-calculator-downloads'
+};
+
+function updateCounterDisplay(elId,value){
+const el=document.getElementById(elId);
+if(el&&value!==undefined&&value!==null){
+el.textContent=Number(value).toLocaleString('en-PK');
+}
+}
+
+function hitCounter(key,elId){
+fetch(COUNTER_BASE+'/hit/'+key)
+.then(r=>r.json())
+.then(d=>updateCounterDisplay(elId,d.value))
+.catch(()=>{});
+}
+
+function getCounter(key,elId){
+fetch(COUNTER_BASE+'/get/'+key)
+.then(r=>r.json())
+.then(d=>updateCounterDisplay(elId,d.value))
+.catch(()=>{});
+}
+
+window.addEventListener('load',()=>{
+hitCounter(COUNTER_KEYS.visitors,'visitorCount');
+getCounter(COUNTER_KEYS.calculations,'calcCount');
+getCounter(COUNTER_KEYS.downloads,'dlCount');
+});
 
 const taxRules = {
 
@@ -367,8 +498,8 @@ totalTax:incomeTax+serviceTax+salesTax
 
 }
 
-function readExcel(){
-if(!document.getElementById('schoolName').value.trim()){alert('Please enter School Name.');return;}
+function readExcel(){const b=document.getElementById("calcBtn");const ot=b.innerHTML;b.disabled=true;b.innerHTML="⏳ Processing...";
+if(!document.getElementById('schoolName').value.trim()){alert('Please enter School Name.');b.disabled=false;b.innerHTML=ot;return;}
 
 
 const file=document.getElementById("excelFile").files[0];
@@ -377,9 +508,14 @@ if(!file){
 
 alert("Please select Excel file.");
 
+b.disabled=false;b.innerHTML=ot;
 return;
 
 }
+
+hitCounter(COUNTER_KEYS.calculations,'calcCount');
+document.getElementById('loading').style.display='flex';
+setTimeout(()=>{document.getElementById('loading').style.display='none';},800);
 
 const reader=new FileReader();
 
@@ -393,7 +529,7 @@ const sheet=workbook.Sheets[workbook.SheetNames[0]];
 
 const rows=XLSX.utils.sheet_to_json(sheet);
 
-showData(rows);
+showData(rows);b.disabled=false;b.innerHTML=ot;
 
 };
 
@@ -502,6 +638,7 @@ maximumFractionDigits:2
 }
 
 function downloadSample(){
+hitCounter(COUNTER_KEYS.downloads,'dlCount');
 const data=[['Item','Amount'],
 ['Caregiver Salary',''],
 ['Teacher Salary',''],
@@ -545,7 +682,8 @@ XLSX.utils.book_append_sheet(wb,ws,'Sample');
 XLSX.writeFile(wb,'School_Tax_Sample.xlsx');
 }
 
-function exportExcel(){
+function exportExcel(){const ebtn=document.getElementById("exportBtn");const eo=ebtn.innerHTML;ebtn.disabled=true;ebtn.innerHTML="⏳ Exporting...";
+hitCounter(COUNTER_KEYS.downloads,'dlCount');
 
 const wb=XLSX.utils.book_new();
 
@@ -570,8 +708,13 @@ const ws2=XLSX.utils.aoa_to_sheet(summary);
 
 XLSX.utils.book_append_sheet(wb,ws2,"Summary");
 
-XLSX.writeFile(wb,"SchoolTaxReport.xlsx");
+XLSX.writeFile(wb,"SchoolTaxReport.xlsx");ebtn.disabled=false;ebtn.innerHTML=eo;
 
+}
+
+function exportPDF(){
+hitCounter(COUNTER_KEYS.downloads,'dlCount');
+window.print();
 }
 
 window.onload=function(){
@@ -580,20 +723,19 @@ document.getElementById("schoolName").focus();
 
 };
 
+
+document.addEventListener('input',e=>{
+if(e.target.id==='tableSearch'){
+const q=e.target.value.toLowerCase();
+document.querySelectorAll('#taxTable tbody tr').forEach(r=>r.style.display=r.innerText.toLowerCase().includes(q)?'':'none');
+}});
+
 </script>
-
-
-
 </div>
-</div>
-
-
-<footer style="text-align:center;background:#0d6efd;color:#fff;padding:20px;margin-top:20px;">
-<h5 style='margin:0;'>Free NSB Tax Calculator</h5><div class='version-badge'>Version 1.0</div>
-<div>Developed by <b>M. Sajid (AEO)</b></div>
-<div>📺 Sajid The Educational Helper</div>
-<div style="margin-top:8px;">© 2026 All Rights Reserved</div>
+<footer style="background:#0d6efd;color:#fff;padding:10px 0;text-align:center;margin-top:20px;font-size:12px">
+© 2026 NSB Tax Calculator
 </footer>
-</body>
 
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+</body>
 </html>
