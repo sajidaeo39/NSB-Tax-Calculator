@@ -176,6 +176,13 @@ text-align:center;
 
 
 .card-body{padding:12px!important}.card{margin-bottom:10px!important}.action-grid .btn{height:46px!important}
+
+
+/* Restore Tax Details card full size */
+.card{max-width:1200px!important}
+.table-wrap{min-height:420px!important}
+#taxTable{width:100%!important}
+#taxTable th,#taxTable td{font-size:12px}
 </style>
 <style>
 .card{
@@ -222,21 +229,14 @@ text-align:center;
 }
 </style>
 <style id="compacttax">
-.table-wrap{overflow:auto;max-height:72vh}
-#taxTable{table-layout:fixed;width:100%;font-size:11px}
-#taxTable th,#taxTable td{white-space:normal!important;word-break:break-word;padding:4px 6px!important;line-height:1.2}
-#taxTable th:nth-child(1),#taxTable td:nth-child(1){width:40px}
-#taxTable th:nth-child(2),#taxTable td:nth-child(2){width:22%}
-#taxTable th:nth-child(3),#taxTable td:nth-child(3){width:10%}
-#taxTable th:nth-child(4),#taxTable td:nth-child(4){width:18%}
-#taxTable th:nth-child(n+5),#taxTable td:nth-child(n+5){width:10%}
-@media print{
-@page{size:A4 landscape;margin:6mm}
-body{zoom:.88}
-.table-wrap{max-height:none;overflow:visible}
-}
+.table-wrap{overflow-x:auto;min-height:auto!important;max-height:none!important}
+#taxTable{width:100%;table-layout:auto;font-size:12px}
+#taxTable th,#taxTable td{padding:8px;white-space:normal;word-break:break-word;vertical-align:middle}
+#taxTable th:nth-child(1),#taxTable td:nth-child(1){width:45px}
+#taxTable th:nth-child(2),#taxTable td:nth-child(2){min-width:180px;text-align:left}
+#taxTable th:nth-child(4),#taxTable td:nth-child(4){min-width:150px}
+.card:has(#taxTable){max-width:1200px!important;width:100%!important}
 </style>
-
 <style id="uicompact">
 .container{margin:12px auto!important}
 .card{margin:10px auto!important;border-radius:14px!important}
@@ -251,6 +251,14 @@ body{zoom:.88}
 .table-search{margin-bottom:8px!important}
 .disclaimer-box,.sticky-disclaimer{margin:4px 0!important}
 footer{padding:8px 0!important;margin-top:10px!important}
+
+.video-grid{grid-template-columns:repeat(4,minmax(0,1fr))!important;gap:10px!important}
+.video-card{border-radius:12px!important}
+.video-thumb img{height:110px!important;object-fit:cover}
+.video-content{padding:10px!important}
+.video-title{font-size:11px!important;min-height:34px}
+.watch-btn{padding:7px!important;font-size:11px}
+@media(max-width:768px){.video-grid{grid-template-columns:repeat(2,1fr)!important}.video-thumb img{height:95px!important}}
 </style>
 <style id="v3-usage-stats">
 .usage-stats{display:flex;flex-wrap:wrap;justify-content:center;gap:8px;margin-top:12px}
@@ -272,14 +280,13 @@ footer{padding:8px 0!important;margin-top:10px!important}
 .disclaimer-box{padding:8px 12px!important;min-height:auto!important;font-size:13px!important}
 .disclaimer-title{margin-bottom:4px!important;font-size:14px!important}
 </style>
-
 <h1 style="margin:0;color:#fff">Free NSB Tax Calculator</h1>
 <div class="mt-1"><span class="version-pill">Version 3.0</span><span class="version-pill" style="margin-top:4px;background:rgba(255,255,255,.15);color:#fff">Tax Year 2025 (2025–26)</span></div><div class="tagline">For Punjab Government Schools (NSB)</div>
 <div style="color:#fff;margin:2px 0 4px">Developed by <b>M. Sajid (AEO)</b></div>
 <a class="yt-btn" href="https://www.youtube.com/@SajidEducationalhelper" target="_blank">▶ Sajid The Educational Helper</a>
 </div><div class="alert alert-warning alert-dismissible fade show sticky-disclaimer d-flex justify-content-between align-items-center py-2 px-3 mb-1" role="alert">
 <div><span>⚠️</span> <small><b>Disclaimer:</b> This calculator is for <b>Non-Filer vendors</b>. Verify the latest FBR withholding tax rates before processing payments.</small></div>
-<div><button type="button" class="btn-close" data-bs-dismiss="alert"></button></div>
+<div><button class="btn-close" data-bs-dismiss="alert" type="button"></button></div>
 </div><div class="upload-box">
 <div class="row g-3">
 <div class="col-md-6">
@@ -302,7 +309,6 @@ footer{padding:8px 0!important;margin-top:10px!important}
 <span class="stat-chip"><span class="chip-icon">🧮</span>Calculations <b id="calcCount">0</b></span>
 <span class="stat-chip"><span class="chip-icon">⬇</span>Downloads <b id="dlCount">0</b></span>
 </div>
-
 </div>
 </div>
 </div>
@@ -325,11 +331,48 @@ Overall Summary
 </div>
 <div class="card">
 <div class="card-header">Video Tutorials</div><div class="card-body"><div class="video-grid">
-<div class="video-card"><div class="video-thumb"><img src="https://img.youtube.com/vi/PwlzUkGnygw/hqdefault.jpg"/><span class="duration">08:35</span></div><div class="video-content"><div class="video-title">📄 Generate NSB Income Tax Challan</div><a class="watch-btn" href="https://youtu.be/PwlzUkGnygw" target="_blank">▶ Watch Tutorial</a></div></div>
-<div class="video-card"><div class="video-thumb"><img src="https://img.youtube.com/vi/7UbUJTWNI5k/hqdefault.jpg"/><span class="duration">07:20</span></div><div class="video-content"><div class="video-title">🧾 Generate NSB Sales Tax Challan</div><a class="watch-btn" href="https://youtu.be/7UbUJTWNI5k" target="_blank">▶ Watch Tutorial</a></div></div>
-<div class="video-card"><div class="video-thumb"><img src="https://img.youtube.com/vi/YcrCJfqWv0I/hqdefault.jpg"/><span class="duration">05:10</span></div><div class="video-content"><div class="video-title">💳 Pay via JazzCash</div><a class="watch-btn" href="https://youtu.be/YcrCJfqWv0I" target="_blank">▶ Watch Tutorial</a></div></div>
-<div class="video-card"><div class="video-thumb"><img src="https://img.youtube.com/vi/rWS7mWf0OuE/hqdefault.jpg"/><span class="duration">06:45</span></div><div class="video-content"><div class="video-title">📱 Pay via Easypaisa</div><a class="watch-btn" href="https://youtu.be/rWS7mWf0OuE" target="_blank">▶ Watch Tutorial</a></div></div>
+<div class="video-card">
+<div class="video-thumb"><img src="https://img.youtube.com/vi/OPP9NofzEvM/hqdefault.jpg"/></div>
+<div class="video-content">
+<div class="video-title">How to use NSB Tax Calculator</div>
+<a class="watch-btn" href="https://youtu.be/OPP9NofzEvM" target="_blank">▶ Watch Tutorial</a>
 </div></div>
+<div class="video-card">
+<div class="video-thumb"><img src="https://img.youtube.com/vi/ChIlxENgxTc/hqdefault.jpg"/></div>
+<div class="video-content">
+<div class="video-title">How to generate NSB Income Tax Challan?</div>
+<a class="watch-btn" href="https://youtu.be/ChIlxENgxTc" target="_blank">▶ Watch Tutorial</a>
+</div></div>
+<div class="video-card">
+<div class="video-thumb"><img src="https://img.youtube.com/vi/UDyZtq6u-lc/hqdefault.jpg"/></div>
+<div class="video-content">
+<div class="video-title">How to generate NSB Sales Tax Challan?</div>
+<a class="watch-btn" href="https://youtu.be/UDyZtq6u-lc" target="_blank">▶ Watch Tutorial</a>
+</div></div>
+<div class="video-card">
+<div class="video-thumb"><img src="https://img.youtube.com/vi/Dcma6ICim3M/hqdefault.jpg"/></div>
+<div class="video-content">
+<div class="video-title">How to generate NSB Service Tax Challan?</div>
+<a class="watch-btn" href="https://youtu.be/Dcma6ICim3M" target="_blank">▶ Watch Tutorial</a>
+</div></div>
+<div class="video-card">
+<div class="video-thumb"><img src="https://img.youtube.com/vi/YDZm_4TbEVU/hqdefault.jpg"/></div>
+<div class="video-content">
+<div class="video-title">How to download CPR? (NSB CPR)</div>
+<a class="watch-btn" href="https://youtu.be/YDZm_4TbEVU" target="_blank">▶ Watch Tutorial</a>
+</div></div>
+<div class="video-card">
+<div class="video-thumb"><img src="https://img.youtube.com/vi/rWS7mWf0OuE/hqdefault.jpg"/></div>
+<div class="video-content">
+<div class="video-title">How to pay NSB Income Tax or Sales Tax Online by Easypaisa?</div>
+<a class="watch-btn" href="https://youtu.be/rWS7mWf0OuE" target="_blank">▶ Watch Tutorial</a>
+</div></div>
+<div class="video-card">
+<div class="video-thumb"><img src="https://img.youtube.com/vi/YcrCJfqWv0I/hqdefault.jpg"/></div>
+<div class="video-content">
+<div class="video-title">How to pay NSB Income Tax or Sales Tax Online by JazzCash?</div>
+<a class="watch-btn" href="https://youtu.be/YcrCJfqWv0I" target="_blank">▶ Watch Tutorial</a>
+</div></div></div></div>
 <div class="card">
 <div class="card-header">
 
@@ -735,7 +778,6 @@ document.querySelectorAll('#taxTable tbody tr').forEach(r=>r.style.display=r.inn
 <footer style="background:#0d6efd;color:#fff;padding:10px 0;text-align:center;margin-top:20px;font-size:12px">
 © 2026 NSB Tax Calculator
 </footer>
-
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>
